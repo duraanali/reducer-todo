@@ -1,48 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Todo.css'
-class TodoForm extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            item: ''
-        };
-    }
 
-    handleChanges = e => {
-        this.setState({
+
+const TodoForm = props => {
+
+
+    const [state, setState] = useState({ item: '' })
+
+    const handleChanges = e => {
+        setState({
             [e.target.name]: e.target.value
 
         });
 
     };
 
-    submitItem = e => {
+    const submitItem = e => {
         e.preventDefault();
-        this.props.addItem(this.state.item);
+        props.addItem(state.item);
     };
 
-    render = () => {
-        return (
 
-            <form onSubmit={this.submitItem}>
-                <div className="input-group mb-3">
-                    <input
-                        className="form-control title"
-                        type="text"
-                        value={this.item}
-                        placeholder="Write Here..."
-                        name="item"
-                        onChange={this.handleChanges}
-                    />
-                    <div className="input-group-append">
-                        <button className="btn btn-outline-success">Add</button>
-                    </div>
+    return (
+
+        <form onSubmit={submitItem}>
+            <div className="input-group mb-3">
+                <input
+                    className="form-control title"
+                    type="text"
+                    value={props.item}
+                    placeholder="Write Here..."
+                    name="item"
+                    onChange={handleChanges}
+                />
+                <div className="input-group-append">
+                    <button className="btn btn-outline-success">Add</button>
                 </div>
-            </form>
+            </div>
+        </form>
 
-        );
-    };
+    );
 }
 
 export default TodoForm;

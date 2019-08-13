@@ -3,10 +3,10 @@ import React from 'react';
 import Todo from './Todo';
 
 const TodoList = props => {
-
+    console.log('map function', props.todoDataInfo)
     return (
         <div>
-            {props.toDoInfo.map(toDo => (
+            {props.todoDataInfo.map(toDo => (
                 <Todo key={toDo.id} toDo={toDo} toggleItem={props.toggleItem} deleteToDo={props.deleteToDo} />
             ))}
 
