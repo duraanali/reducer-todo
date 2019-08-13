@@ -1,28 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import TodoList from './components/TodoComponents/TodoList';
 import './components/TodoComponents/Todo.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import TodoForm from './components/TodoComponents/TodoForm';
-
+import { initialState, toDoList } from './reducers/ToDoReducer';
 
 const App = () => {
-  const [todoData, setTodoData] = useState([
-    {
-      task: 'Finish Reading The Book',
-      id: 1528817077286,
-      completed: true
-    },
-    {
-      task: 'Get Groceries',
-      id: 152888,
-      completed: true
-    }
-  ]);
+  const [todoData, setTodoData] = useState();
 
-  console.log(todoData)
+  const [state, dispatch] = useReducer(toDoList, initialState);
+  console.log('state from reducer:', state);
 
   const toggleItem = id => {
-    console.log('toggle:', toggleItem)
+
     setTodoData({
       todoData: todoData.map(item => {
         if (item.id === id) {
@@ -38,7 +28,6 @@ const App = () => {
   };
 
   const addItem = itemName => {
-    console.log('Add Item:', addItem)
     const newItem = {
       task: itemName,
       id: Date.now(),
