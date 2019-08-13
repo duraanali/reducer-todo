@@ -6,16 +6,22 @@ export const initialState = {
 
 export const toDoList = (state, action) => {
     switch (action.type) {
-        case 'TOGGLE_EDITING':
+        case 'TOGGLE_ITEM':
             return {
                 ...state,
-                editing: !state.editing
+                completed: !state.completed
             };
-        case 'UPDATE_TITLE':
+        case 'ADD_ITEM':
             return {
                 ...state,
-                title: action.payload,
-                editing: !state.editing
+                task: action.payload,
+                completed: !state.completed
+            };
+        case 'DELETE_ITEM':
+            return {
+                ...state,
+                task: action.payload,
+                completed: !state.completed
             };
         default:
             return state;

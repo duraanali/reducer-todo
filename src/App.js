@@ -14,7 +14,7 @@ const App = () => {
   const toggleItem = id => {
 
     setTodoData({
-      todoData: todoData.map(item => {
+      state: state.map(item => {
         if (item.id === id) {
           return {
             ...item,
@@ -34,13 +34,13 @@ const App = () => {
       completed: true
     };
 
-    setTodoData({
+    dispatch({
       todoData: [...todoData, newItem]
     });
   };
 
   const deleteToDo = () => {
-    setTodoData({
+    dispatch({
       todoData: todoData.filter(toDo => toDo.completed)
     });
   };
